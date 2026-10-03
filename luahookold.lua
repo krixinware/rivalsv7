@@ -17118,5 +17118,91 @@ task.spawn(function()
         task.wait(0.5)
     end
 end)
-Library:Notify('LuaHook v1 beta loaded', 4)
+-- ============ LOW-SPEC MODE ============
+-- Turn everything expensive OFF at startup. Turn things back ON one
+-- at a time from the menu to find what's killing your FPS.
+pcall(function()
+    -- Visuals off
+    Config.Visuals = false
+    Config.Weather = false
+    Config.WeatherMeteors = false
+    Config.WeatherShootingStars = false
+    Config.WeatherPuddles = false
+    Config.WeatherRainbow = false
+    Config.WeatherGodRays = false
+    Config.VisualsHolograms = false
+    Config.VisualsRainbowMap = false
+    Config.VisualsBloom = false
+    Config.VisualsVignette = false
+    Config.VisualsLetterbox = false
+    Config.VisualsDOF = false
+    Config.VisualsCameraSway = false
+    Config.VisualsPerformanceMode = true  -- THIS IS THE BIG ONE
+    Config.CameraAspectRatioEnabled = false
+    Config.ThirdPersonEnabled = false
+
+    -- ESP — kill the expensive parts
+    Config.ESP = true              -- keep boxes on
+    Config.ESPSkeleton = false     -- skeleton = 20+ UI strokes per player
+    Config.ESPTracers = false
+    Config.ESPChams = false        -- Highlight instances are very expensive
+    Config.ESPArrows = false
+    Config.ESPRadar = false
+    Config.ESPThreatCount = false
+    Config.ESPPeekAlert = false
+    Config.ESPHealTick = false
+    Config.ESPLookLine = false
+    Config.ESPHeadDot = false
+    Config.ESPHealthGhost = false  -- ghost bar runs every frame
+    Config.ESPDistanceScaling = false
+    Config.ESPDeclutter = false    -- declutter sorts every frame
+    Config.ESPGradientSpeed = 0    -- moving gradients = constant re-render
+    Config.ESPMaxPlayers = 8       -- stop drawing the whole lobby
+    Config.ESPMaxDistance = 400    -- only nearby players
+
+    -- FX off (each one runs a render loop)
+    Config.FXBeamTracer = false
+    Config.FXDamageNumbers = false
+    Config.FXKillPillar = false
+    Config.FXKillShards = false
+    Config.FXKillPulse = false
+    Config.FXWorldSpark = false
+    Config.FXHeadshotSpark = false
+    Config.FXHitFlash = false
+    Config.FXDamageDirection = false
+    Config.FXLowHPVignette = false
+    Config.FXFovRing = false
+    Config.FXCrosshair = false
+
+    -- HUD+ off (each is a full render loop)
+    Config.HUDCompass = false
+    Config.HUDThreatArc = false
+    Config.HUDRangeReadout = false
+    Config.HUDBindList = false
+    Config.FXTargetInfo = false
+
+    -- UtilityESP off (scans workspace)
+    Config.UtilityESP = false
+
+    -- Spoofer off (watches every GUI label)
+    Config.SpooferNameEnabled = false
+    Config.SpooferLevelEnabled = false
+    Config.SpooferCasualWinsEnabled = false
+    Config.SpooferRankedWinsEnabled = false
+    Config.SpooferRankedEloEnabled = false
+    Config.SpooferWinPercentEnabled = false
+    Config.SpooferWinStreakEnabled = false
+    Config.SpooferFavoriteMapEnabled = false
+
+    -- Skins/GV off (masks PlayerData every frame)
+    Config.GameVisuals = false
+    Config.GVEmotes = false
+
+    -- Kill the "predictive lead" tracker if you don't need lead
+    Config.PredictiveLead = false
+    Config.ProjectileLead = false
+end)
+-- =======================================
+
+Library:Notify('LuaHook v1 beta loaded (low-spec mode)', 4)
 _G["\76\72"] = Library
